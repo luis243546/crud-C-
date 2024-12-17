@@ -11,6 +11,7 @@
     <Content Remove="Datos2\**" />
     <EmbeddedResource Remove="Datos2\**" />
     <None Remove="Datos2\**" />
+    <None Remove="Views\Persona\Eliminar.html" />
   </ItemGroup>
 
   <ItemGroup>

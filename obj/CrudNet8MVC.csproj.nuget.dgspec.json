@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adanc\\Documents\\Visual Studio 2022\\ProyectoCrudNet8MVC\\CrudNet8MVC\\CrudNet8MVC.csproj": {}
+    "C:\\Users\\USUARIO\\RiderProjects\\elpServiciosCrud\\CrudNet8MVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adanc\\Documents\\Visual Studio 2022\\ProyectoCrudNet8MVC\\CrudNet8MVC\\CrudNet8MVC.csproj": {
+    "C:\\Users\\USUARIO\\RiderProjects\\elpServiciosCrud\\CrudNet8MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adanc\\Documents\\Visual Studio 2022\\ProyectoCrudNet8MVC\\CrudNet8MVC\\CrudNet8MVC.csproj",
+        "projectUniqueName": "C:\\Users\\USUARIO\\RiderProjects\\elpServiciosCrud\\CrudNet8MVC.csproj",
         "projectName": "CrudNet8MVC",
-        "projectPath": "C:\\Users\\adanc\\Documents\\Visual Studio 2022\\ProyectoCrudNet8MVC\\CrudNet8MVC\\CrudNet8MVC.csproj",
-        "packagesPath": "C:\\Users\\adanc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adanc\\Documents\\Visual Studio 2022\\ProyectoCrudNet8MVC\\CrudNet8MVC\\obj\\",
+        "projectPath": "C:\\Users\\USUARIO\\RiderProjects\\elpServiciosCrud\\CrudNet8MVC.csproj",
+        "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\USUARIO\\RiderProjects\\elpServiciosCrud\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\adanc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,9 +43,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

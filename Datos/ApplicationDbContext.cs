@@ -11,5 +11,6 @@ namespace CrudNet8MVC.Datos
 
         //Agregar los modelos aquí (Cada modelo corresponde a una tabla en la BD)
         public DbSet<Contacto> Contacto { get; set; }
+        public DbSet<Persona> Persona { get; set; }
     }
 }
