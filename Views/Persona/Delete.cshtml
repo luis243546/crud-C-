@@ -1,0 +1,30 @@
+﻿@model CrudNet8MVC.Models.Persona
+
+<h1>Eliminar Persona</h1>
+
+<p>¿Estás seguro de que deseas eliminar a la persona con ID: @Model.Id?</p>
+
+<div>
+    <strong>Nombre:</strong> @Model.Nombre
+</div>
+<div>
+    <strong>Apellido:</strong> @Model.Apellido
+</div>
+<div>
+    <strong>Correo Electrónico:</strong> @Model.CorreoElectronico
+</div>
+<div>
+    <strong>Número de Teléfono:</strong> @Model.NumeroTelefono
+</div>
+<div>
+    <strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToString("dd/MM/yyyy")
+</div>
+<div>
+    <strong>Dirección:</strong> @Model.Direccion
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="@Url.Action("Dashboard")" class="btn btn-secondary">Cancelar</a>
+</form>

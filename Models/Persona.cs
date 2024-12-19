@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
+
 
 namespace CrudNet8MVC.Models;
 
 public class Persona
 {
-    [Required(ErrorMessage = "El ID es obligatorio.")]
-    [Range(1, int.MaxValue, ErrorMessage = "El ID debe ser un número entero positivo.")]
     public int Id { get; set; }
 
     [Required(ErrorMessage = "El nombre es obligatorio.")]
@@ -47,22 +45,22 @@ public class Persona
     }
 
     // Método estático para sanitizar entradas adicionales
-    public static string SanitizarEntrada(string entrada)
-    {
-        if (string.IsNullOrWhiteSpace(entrada))
-        {
-            return string.Empty;
-        }
-
-        // Eliminación de scripts y caracteres maliciosos
-        entrada = Regex.Replace(entrada, @"<.*?>", string.Empty); // Eliminar etiquetas HTML
-        entrada = Regex.Replace(entrada, @"['"";--]", string.Empty); // Evitar inyección SQL o comandos maliciosos
-        return entrada.Trim();
-    }
-
-    // Método para validar datos específicos antes de procesarlos
-    public static bool ValidarDatoPersonalizado(string dato, string patron)
-    {
-        return Regex.IsMatch(dato, patron);
-    }
+    // public static string SanitizarEntrada(string entrada)
+    // {
+    //     if (string.IsNullOrWhiteSpace(entrada))
+    //     {
+    //         return string.Empty;
+    //     }
+    //
+    //     // Eliminación de scripts y caracteres maliciosos
+    //     entrada = Regex.Replace(entrada, @"<.*?>", string.Empty); // Eliminar etiquetas HTML
+    //     entrada = Regex.Replace(entrada, @"['"";--]", string.Empty); // Evitar inyección SQL o comandos maliciosos
+    //     return entrada.Trim();
+    // }
+    //
+    // // Método para validar datos específicos antes de procesarlos
+    // public static bool ValidarDatoPersonalizado(string dato, string patron)
+    // {
+    //     return Regex.IsMatch(dato, patron);
+    // }
 }

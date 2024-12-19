@@ -1,141 +1,149 @@
-﻿using CrudNet8MVC.Models;
+﻿using CrudNet8MVC.Datos;
+using CrudNet8MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace CrudNet8MVC.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class PersonaController : Controller
     {
-        private static readonly List<Persona> Personas = new List<Persona>();
+       private readonly ApplicationDbContext _contexto;
 
-        // GET: /Persona/Dashboard
-        [HttpGet("/Persona/Dashboard")]
-        public IActionResult Dashboard()
+        public PersonaController(ApplicationDbContext contexto)
         {
-            // Pasa los datos necesarios a la vista si es necesario
-            ViewData["Title"] = "Panel de Control de Personas";
-            return View("Dashboard", Personas); // Asegúrate de que exista la vista Dashboard.cshtml en Views/Persona
+            _contexto = contexto;
         }
+        
+       
 
-        // GET: /Persona/Create
-        [HttpGet("/Persona/Crear")]
-        public IActionResult Create()
-        {
-            // Retorna la vista Create.cshtml
-            return View("Crear");
-        }
-
-        // POST: /Persona/Create
-        [HttpPost("/Persona/Crear")]
-        public IActionResult Create(Persona persona)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("Crear", persona);
-            }
-
-            // Validar que el ID sea único
-            if (Personas.Any(p => p.Id == persona.Id))
-            {
-                ModelState.AddModelError("Id", "Ya existe una persona con el mismo ID.");
-                return View("Crear", persona);
-            }
-
-            // Sanitizar entradas sensibles
-            persona.Nombre = Persona.SanitizarEntrada(persona.Nombre);
-            persona.Apellido = Persona.SanitizarEntrada(persona.Apellido);
-            persona.CorreoElectronico = Persona.SanitizarEntrada(persona.CorreoElectronico);
-            persona.Direccion = Persona.SanitizarEntrada(persona.Direccion);
-
-            Personas.Add(persona);
-
-            // Redirigir al Dashboard tras crear la nueva persona
-            return RedirectToAction("Dashboard");
-        }
-
-        // GET: api/persona
         [HttpGet]
-        public ActionResult<IEnumerable<Persona>> GetAll()
+        public async Task<IActionResult> Dashboard()
         {
-            return Ok(Personas);
+            return View(await _contexto.Persona.ToListAsync());
         }
 
-        // GET: api/persona/{id}
-        [HttpGet("{id:int}")]
-        public ActionResult<Persona> GetById(int id)
+        [HttpGet]
+        public IActionResult Crear()
         {
-            var persona = Personas.FirstOrDefault(p => p.Id == id);
-            if (persona == null)
-            {
-                return NotFound(new { Message = "Persona no encontrada." });
-            }
-            return Ok(persona);
+            return View();
         }
 
-        // POST: api/persona
         [HttpPost]
-        public ActionResult CreateApi([FromBody] Persona persona)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Crear(Persona persona)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                _contexto.Persona.Add(persona);
+                Console.WriteLine($"Datos de Persona agregados: {persona.Nombre} {persona.Apellido}");
+
+                await _contexto.SaveChangesAsync();
+                return RedirectToAction(nameof(Dashboard));
             }
 
-            // Validar que el ID sea único
-            if (Personas.Any(p => p.Id == persona.Id))
+            // Mostrar errores de validación
+            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
-                return Conflict(new { Message = "Ya existe una persona con el mismo ID." });
+                Console.WriteLine($"Error: {error.ErrorMessage}");
             }
 
-            // Sanitizar entradas sensibles
-            persona.Nombre = Persona.SanitizarEntrada(persona.Nombre);
-            persona.Apellido = Persona.SanitizarEntrada(persona.Apellido);
-            persona.CorreoElectronico = Persona.SanitizarEntrada(persona.CorreoElectronico);
-            persona.Direccion = Persona.SanitizarEntrada(persona.Direccion);
-
-            Personas.Add(persona);
-            return CreatedAtAction(nameof(GetById), new { id = persona.Id }, persona);
+            return View(persona);
         }
 
-        // PUT: api/persona/{id}
-        [HttpPut("{id:int}")]
-        public ActionResult Update(int id, [FromBody] Persona persona)
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
         {
-            if (!ModelState.IsValid)
+            if(id == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
 
-            var existingPersona = Personas.FirstOrDefault(p => p.Id == id);
-            if (existingPersona == null)
-            {
-                return NotFound(new { Message = "Persona no encontrada." });
-            }
-
-            // Actualizar datos sanitizados
-            existingPersona.Nombre = Persona.SanitizarEntrada(persona.Nombre);
-            existingPersona.Apellido = Persona.SanitizarEntrada(persona.Apellido);
-            existingPersona.CorreoElectronico = Persona.SanitizarEntrada(persona.CorreoElectronico);
-            existingPersona.NumeroTelefono = persona.NumeroTelefono; // Ya validado en el modelo
-            existingPersona.FechaNacimiento = persona.FechaNacimiento;
-            existingPersona.Direccion = Persona.SanitizarEntrada(persona.Direccion);
-
-            return NoContent();
-        }
-
-        // DELETE: api/persona/{id}
-        [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id)
-        {
-            var persona = Personas.FirstOrDefault(p => p.Id == id);
+            var persona = _contexto.Persona.Find(id);
             if (persona == null)
             {
-                return NotFound(new { Message = "Persona no encontrada." });
+                return NotFound();
             }
 
-            Personas.Remove(persona);
-            return NoContent();
+            return View(persona);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Persona persona)
+        {
+            if (ModelState.IsValid)
+            {               
+                _contexto.Update(persona);
+                await _contexto.SaveChangesAsync();
+                return RedirectToAction(nameof(Dashboard));
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var persona = _contexto.Persona.Find(id);
+            if (persona == null)
+            {
+                return NotFound();
+            }
+
+            return View(persona);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var persona = _contexto.Persona.Find(id);
+            if (persona == null)
+            {
+                return NotFound();
+            }
+
+            return View(persona);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BorrarPersona(int? id)
+        {
+            var persona = await _contexto.Persona.FindAsync(id);
+            if(persona == null)
+            {
+                return View();
+            }
+
+            //Borrado
+            _contexto.Persona.Remove(persona);
+            await _contexto.SaveChangesAsync();
+            return RedirectToAction(nameof(Dashboard));            
+        }
+
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
+

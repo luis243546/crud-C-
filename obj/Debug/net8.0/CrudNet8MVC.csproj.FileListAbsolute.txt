@@ -278,6 +278,7 @@ C:\Users\adanc\Documents\Visual Studio 2022\ProyectoCrudNet8MVC\CrudNet8MVC\bin\
 C:\Users\adanc\Documents\Visual Studio 2022\ProyectoCrudNet8MVC\CrudNet8MVC\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\appsettings.json
+C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\Views\Persona\launchSettings.json
 C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\CrudNet8MVC.staticwebassets.runtime.json
 C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\CrudNet8MVC.staticwebassets.endpoints.json
 C:\Users\USUARIO\RiderProjects\elpServiciosCrud\bin\Debug\net8.0\CrudNet8MVC.exe

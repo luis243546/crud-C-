@@ -1,0 +1,28 @@
+﻿@model CrudNet8MVC.Models.Persona
+
+<h1>Detalles de Persona</h1>
+
+<div>
+    <strong>ID:</strong> @Model.Id
+</div>
+<div>
+    <strong>Nombre:</strong> @Model.Nombre
+</div>
+<div>
+    <strong>Apellido:</strong> @Model.Apellido
+</div>
+<div>
+    <strong>Correo Electrónico:</strong> @Model.CorreoElectronico
+</div>
+<div>
+    <strong>Número de Teléfono:</strong> @Model.NumeroTelefono
+</div>
+<div>
+    <strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToString("dd/MM/yyyy")
+</div>
+<div>
+    <strong>Dirección:</strong> @Model.Direccion
+</div>
+
+
+<a href="@Url.Action("Dashboard")" class="btn btn-secondary">Volver al Dashboard</a>
