@@ -3,33 +3,40 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configuramos la conexión a sql ser local db MSSQLLOCAL
-/*builder.Services.AddDbContext<ApplicationDbContext>(opciones => 
-            opciones.UseSqlServer(builder.Configuration.GetConnectionString("ConexionMySql")));*/
+// Configurar la conexiÃ³n a MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
     opciones.UseMySql(
         builder.Configuration.GetConnectionString("ConexionMySql"),
-        new MySqlServerVersion(new Version(8, 0, 40)) // Cambia según tu versión de MySQL
+        new MySqlServerVersion(new Version(8, 0, 40)) // Cambia segÃºn tu versiÃ³n de MySQL
     ));
 
-// Add services to the container.
+// Agregar servicios al contenedor
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de solicitudes HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
+// ConfiguraciÃ³n de rutas
 app.MapControllerRoute(
     name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "persona",
+    pattern: "{controller=Persona}/{action=Dashboard}/{id?}");
+
+app.MapControllerRoute(
+    name: "inicio",
     pattern: "{controller=Inicio}/{action=Index}/{id?}");
 
 app.Run();
+

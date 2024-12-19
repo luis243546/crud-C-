@@ -11,6 +11,13 @@
     <Content Remove="Datos2\**" />
     <EmbeddedResource Remove="Datos2\**" />
     <None Remove="Datos2\**" />
+    <None Remove="Views\Persona\Eliminar.html" />
+    <None Remove="Properties\launchSettings.json" />
+    <None Include="Views\Persona\launchSettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +27,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

@@ -26,6 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <!-- Nuevo botón para el Dashboard de Personas -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Persona" asp-action="Dashboard">
+                                <i class="fas fa-users"></i> Personas Dashboard
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -48,3 +54,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
