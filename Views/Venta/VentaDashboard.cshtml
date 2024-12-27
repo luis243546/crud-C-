@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CrudNet8MVC.Models.Venta>
+@{
+ViewData["Title"] = "Ventas";
+}
+
+<h1 class="text-center">Tablero de Control de Gestion de Ventas</h1>
+<div class="row">
+    <div class="offset-9 col-3 mb-3">
+        <a asp-action="Crear" asp-controller="Venta" class="btn btn-secondary d-block mx-auto btn-lg">
+            <i class="fa fa-plus" aria-hidden="true"></i> Agregar Venta
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border">
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Lista de Personas</strong></h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    @if(Model.Count() > 0)
+                    {
+                    <table class="table table-bordered" id="tblUsuarios" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.Id)</th>
+                            <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+                            <th>@Html.DisplayNameFor(m => m.Monto)</th>
+                            <th>@Html.DisplayNameFor(m=>m.Descripcion)</th>
+                            <th>@Html.DisplayNameFor(m => m.Persona)</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach(var venta in Model){
+                        <tr>
+                            <td>@venta.Id</td>
+                            <td>@venta.Fecha.ToShortDateString()</td>
+                            <td>@venta.Monto.ToString("F2")</td>
+                            <td>@venta.Descripcion.ToString()</td>
+                            <td>@venta.Persona.Nombre</td>
+                            <td>
+                                <a asp-action="Detalle" asp-route-id="@venta.Id">Detalles</a> |
+                                <a asp-action="Editar" asp-route-id="@venta.Id">Editar</a> |
+                                <a asp-action="Borrar" asp-route-id="@venta.Id">Eliminar</a>
+                            </td> 
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                    }
+                    else
+                    {
+                    <p>No hay registros</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

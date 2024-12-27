@@ -43,6 +43,8 @@ public class Persona
         if (FechaNacimiento.Date > hoy.AddYears(-edad)) edad--;
         return edad;
     }
+    
+    public ICollection<Venta> Ventas { get; set; }
 
     // Método estático para sanitizar entradas adicionales
     // public static string SanitizarEntrada(string entrada)

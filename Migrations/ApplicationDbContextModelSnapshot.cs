@@ -93,6 +93,95 @@ namespace CrudNet8MVC.Migrations
 
                     b.ToTable("Persona");
                 });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Producto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VentaId");
+
+                    b.ToTable("Producto");
+                });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Venta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("PersonaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonaId");
+
+                    b.ToTable("Venta");
+                });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Producto", b =>
+                {
+                    b.HasOne("CrudNet8MVC.Models.Venta", "Venta")
+                        .WithMany("Productos")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Venta", b =>
+                {
+                    b.HasOne("CrudNet8MVC.Models.Persona", "Persona")
+                        .WithMany("Ventas")
+                        .HasForeignKey("PersonaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Persona", b =>
+                {
+                    b.Navigation("Ventas");
+                });
+
+            modelBuilder.Entity("CrudNet8MVC.Models.Venta", b =>
+                {
+                    b.Navigation("Productos");
+                });
 #pragma warning restore 612, 618
         }
     }

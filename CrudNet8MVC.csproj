@@ -11,13 +11,7 @@
     <Content Remove="Datos2\**" />
     <EmbeddedResource Remove="Datos2\**" />
     <None Remove="Datos2\**" />
-    <None Remove="Views\Persona\Eliminar.html" />
     <None Remove="Properties\launchSettings.json" />
-    <None Include="Views\Persona\launchSettings.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,11 +20,64 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\launchSettings.json" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Borrar.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Crear.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Detalle.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Editar.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Inicio\Privacy.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\Crear.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\Dashboard.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Persona\Edit.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Venta\Borrar.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Venta\Crear.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Venta\Detalle.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Venta\Editar.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\Venta\VentaDashboard.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Migrations\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Inicio\Borrar.cshtml" />
+    <AdditionalFiles Include="Views\Inicio\Crear.cshtml" />
+    <AdditionalFiles Include="Views\Inicio\Detalle.cshtml" />
+    <AdditionalFiles Include="Views\Inicio\Editar.cshtml" />
+    <AdditionalFiles Include="Views\Inicio\Index.cshtml" />
+    <AdditionalFiles Include="Views\Inicio\Privacy.cshtml" />
+    <AdditionalFiles Include="Views\Persona\Crear.cshtml" />
+    <AdditionalFiles Include="Views\Persona\Dashboard.cshtml" />
+    <AdditionalFiles Include="Views\Persona\Delete.cshtml" />
+    <AdditionalFiles Include="Views\Persona\Details.cshtml" />
+    <AdditionalFiles Include="Views\Persona\Edit.cshtml" />
+    <AdditionalFiles Include="Views\Shared\Error.cshtml" />
+    <AdditionalFiles Include="Views\Shared\_Layout.cshtml" />
+    <AdditionalFiles Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <AdditionalFiles Include="Views\Venta\Crear.cshtml" />
+    <AdditionalFiles Include="Views\Venta\VentaDashboard.cshtml" />
+    <AdditionalFiles Include="Views\_ViewImports.cshtml" />
+    <AdditionalFiles Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>
